@@ -168,6 +168,8 @@
   .btn-no.loose {
     position: fixed;
     z-index: 50;
+    /* glide to the new spot instead of teleporting */
+    transition: left 0.32s cubic-bezier(.34,1.3,.5,1), top 0.32s cubic-bezier(.34,1.3,.5,1);
   }
 
   /* ---------- Step 2: pickers ---------- */
