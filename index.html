@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>A Little Question for Amanda 💌</title>
+
+<!-- Link preview (shows when texted/shared) -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://redbeard-44.github.io/date-night/" />
+<meta property="og:title" content="Amanda… I have a question for you 💌" />
+<meta property="og:description" content="Tap to open — there's something I want to ask you. 🌹" />
+<meta property="og:image" content="https://redbeard-44.github.io/date-night/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Amanda… I have a question for you 💌" />
+<meta name="twitter:description" content="Tap to open — there's something I want to ask you. 🌹" />
+<meta name="twitter:image" content="https://redbeard-44.github.io/date-night/og-image.png" />
+<meta name="theme-color" content="#ff6b9d" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💌</text></svg>" />
+<style>
+  :root {
+    --blush: #ffd9e3;
+    --rose: #ff6b9d;
+    --rose-deep: #e84a7f;
+    --cream: #fff7fb;
+    --ink: #5a3d4d;
+    --gold: #f4b860;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+  }
+
+  body {
+    font-family: 'Segoe UI', 'Trebuchet MS', system-ui, sans-serif;
+    background: radial-gradient(circle at 30% 20%, #ffe6ef 0%, #ffd4e6 40%, #ffc2dd 100%);
+    color: var(--ink);
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* floating hearts background */
+  .heart-bg {
+    position: fixed;
+    top: -40px;
+    font-size: 22px;
+    opacity: 0.5;
+    animation: float-up linear infinite;
+    pointer-events: none;
+    user-select: none;
+  }
+  @keyframes float-up {
+    0%   { transform: translateY(0) rotate(0deg); opacity: 0; }
+    10%  { opacity: 0.6; }
+    90%  { opacity: 0.6; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+  }
+
+  .stage {
+    width: 100%;
+    max-width: 440px;
+    padding: 24px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ---------- The closed envelope ---------- */
+  .envelope-wrap {
+    text-align: center;
+    cursor: pointer;
+    animation: gentle-bob 3s ease-in-out infinite;
+  }
+  @keyframes gentle-bob {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-10px); }
+  }
+  .envelope {
+    font-size: 120px;
+    line-height: 1;
+    filter: drop-shadow(0 12px 18px rgba(232,74,127,0.35));
+  }
+  .tap-hint {
+    margin-top: 18px;
+    font-size: 18px;
+    color: var(--rose-deep);
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+  .tap-hint span {
+    display: inline-block;
+    animation: pulse 1.4s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.85; }
+    50%      { transform: scale(1.08); opacity: 1; }
+  }
+
+  /* ---------- The card ---------- */
+  .card {
+    background: var(--cream);
+    border-radius: 28px;
+    padding: 40px 30px 44px;
+    box-shadow: 0 24px 60px rgba(232,74,127,0.30), inset 0 0 0 3px #fff;
+    border: 2px solid var(--blush);
+    text-align: center;
+    position: relative;
+    animation: pop-in 0.5s cubic-bezier(.18,1.25,.4,1) both;
+  }
+  @keyframes pop-in {
+    0%   { transform: scale(0.7) translateY(20px); opacity: 0; }
+    100% { transform: scale(1) translateY(0); opacity: 1; }
+  }
+
+  .card .topper { font-size: 52px; margin-bottom: 6px; }
+  .card h1 {
+    font-size: 28px;
+    color: var(--rose-deep);
+    margin-bottom: 10px;
+    line-height: 1.25;
+  }
+  .card .sub {
+    font-size: 16px;
+    color: var(--ink);
+    opacity: 0.8;
+    margin-bottom: 28px;
+    line-height: 1.5;
+  }
+
+  /* button row */
+  .btn-row {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    min-height: 64px;
+  }
+  .btn {
+    border: none;
+    border-radius: 999px;
+    padding: 14px 34px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn-yes {
+    background: linear-gradient(135deg, var(--rose) 0%, var(--rose-deep) 100%);
+    color: #fff;
+    box-shadow: 0 8px 18px rgba(232,74,127,0.45);
+  }
+  .btn-yes:hover { transform: translateY(-2px) scale(1.04); box-shadow: 0 12px 24px rgba(232,74,127,0.55); }
+  .btn-no {
+    background: #fff;
+    color: var(--rose-deep);
+    border: 2px solid var(--blush);
+  }
+  /* when the No button starts dodging, it goes absolute so it can fly anywhere */
+  .btn-no.loose {
+    position: fixed;
+    z-index: 50;
+  }
+
+  /* ---------- Step 2: pickers ---------- */
+  .picker { display: none; }
+  .picker.show { display: block; animation: pop-in 0.5s cubic-bezier(.18,1.25,.4,1) both; }
+
+  .picker h2 {
+    font-size: 24px;
+    color: var(--rose-deep);
+    margin-bottom: 4px;
+  }
+  .picker .yay { font-size: 46px; margin-bottom: 8px; }
+  .field { text-align: left; margin: 22px 4px 0; }
+  .field label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--rose-deep);
+    font-size: 15px;
+  }
+  .field select, .field input[type="date"] {
+    width: 100%;
+    padding: 13px 14px;
+    border-radius: 14px;
+    border: 2px solid var(--blush);
+    background: #fff;
+    font-size: 16px;
+    font-family: inherit;
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .field select:focus, .field input:focus {
+    outline: none;
+    border-color: var(--rose);
+  }
+  .note {
+    font-size: 12.5px;
+    opacity: 0.6;
+    margin-top: 6px;
+  }
+  .send {
+    margin-top: 28px;
+    width: 100%;
+    background: linear-gradient(135deg, var(--gold) 0%, #e89b3c 100%);
+    color: #fff;
+    box-shadow: 0 8px 18px rgba(244,184,96,0.5);
+  }
+  .send:hover { transform: translateY(-2px) scale(1.02); }
+
+  /* ---------- Step 3: confirmation ---------- */
+  .done { display: none; text-align: center; }
+  .done.show { display: block; animation: pop-in 0.5s cubic-bezier(.18,1.25,.4,1) both; }
+  .done .big { font-size: 60px; margin-bottom: 10px; }
+  .done h2 { font-size: 26px; color: var(--rose-deep); margin-bottom: 12px; }
+  .done p { font-size: 17px; line-height: 1.6; }
+  .done .recap {
+    margin-top: 18px;
+    background: var(--blush);
+    border-radius: 16px;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--rose-deep);
+  }
+
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+  <!-- STEP 0: envelope -->
+  <div class="stage" id="stage">
+    <div class="envelope-wrap" id="envelope" onclick="openCard()">
+      <div class="envelope">💌</div>
+      <div class="tap-hint"><span>For Amanda — tap to open ✨</span></div>
+    </div>
+
+    <!-- STEP 1: the question -->
+    <div class="card hidden" id="card">
+      <div class="topper">🌹</div>
+      <h1 id="question">Amanda, will you go on a date with me?</h1>
+      <p class="sub">No pressure… but the right answer is pretty obvious 😏</p>
+
+      <div class="btn-row" id="btnRow">
+        <button class="btn btn-yes" onclick="sayYes()">Yes 💕</button>
+        <button class="btn btn-no" id="noBtn">No</button>
+      </div>
+
+      <!-- STEP 2: pickers (appear after Yes) -->
+      <div class="picker" id="picker">
+        <div class="yay">🥰</div>
+        <h2>Yay! Let's plan it.</h2>
+
+        <div class="field">
+          <label for="datePick">Pick our date 📅</label>
+          <input type="date" id="datePick" min="2026-06-16" max="2026-06-18" value="2026-06-16" />
+          <div class="note" id="dateNote">Choose any day June 16–18 💕</div>
+        </div>
+
+        <div class="field">
+          <label for="restPick">Pick a restaurant 🍽️</label>
+          <select id="restPick">
+            <option value="" disabled selected>Choose a spot…</option>
+            <option>2 Guys From Italy</option>
+            <option>D Macs</option>
+            <option>Saltgrass</option>
+            <option>Chuy's</option>
+            <option>Tight Ends</option>
+            <option>Joey Dallas</option>
+            <option>Hudson House</option>
+          </select>
+        </div>
+
+        <button class="btn send" onclick="finish()">Lock it in 🎉</button>
+      </div>
+
+      <!-- STEP 3: confirmation -->
+      <div class="done" id="done">
+        <div class="big">💖</div>
+        <h2>It's a date!</h2>
+        <p>I can't wait to take you out.</p>
+        <div class="recap" id="recap"></div>
+        <button class="btn send" id="textBtn" onclick="sendText()">Send it to him 💌</button>
+        <button class="btn btn-no" id="copyBtn" style="margin-top:12px;width:100%;border:2px solid var(--blush);" onclick="copyDetails()">Copy the details 📋</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+  // sprinkle floating hearts
+  const hearts = ['💕','💗','🌸','✨','💞','🌹'];
+  for (let i = 0; i < 14; i++) {
+    const h = document.createElement('div');
+    h.className = 'heart-bg';
+    h.textContent = hearts[i % hearts.length];
+    h.style.left = Math.random() * 100 + 'vw';
+    h.style.animationDuration = (7 + Math.random() * 8) + 's';
+    h.style.animationDelay = (Math.random() * 8) + 's';
+    h.style.fontSize = (16 + Math.random() * 18) + 'px';
+    document.body.appendChild(h);
+  }
+
+  function openCard() {
+    document.getElementById('envelope').classList.add('hidden');
+    document.getElementById('card').classList.remove('hidden');
+  }
+
+  // ---- The dodging No button ----
+  const noBtn = document.getElementById('noBtn');
+  let dodgeCount = 0;
+  const MAX_DODGES = 20; // how many times she can try "No" before it gives up
+  const teases = [
+    'No', 'Are you sure?', 'Really?', 'Think again 😉', 'Hmm?',
+    'Nope!', 'Try again 😄', 'Missed me!', 'Too slow 🐢', 'Catch me!',
+    'Not today 😜', 'Keep trying 💕', 'You can\'t 😆', 'Almost!', 'Nope nope',
+    'So close!', 'Give up? 🙈', 'Just say Yes 😘', 'Last chance…', 'Okay okay 🥺'
+  ];
+
+  function dodge() {
+    if (dodgeCount >= MAX_DODGES) return; // it has already given up
+
+    // make it free-floating the first time so it can roam
+    if (!noBtn.classList.contains('loose')) {
+      const r = noBtn.getBoundingClientRect();
+      noBtn.classList.add('loose');
+      noBtn.style.left = r.left + 'px';
+      noBtn.style.top = r.top + 'px';
+    }
+    const pad = 24;
+    const bw = noBtn.offsetWidth;
+    const bh = noBtn.offsetHeight;
+    const maxX = window.innerWidth - bw - pad;
+    const maxY = window.innerHeight - bh - pad;
+    const newX = Math.max(pad, Math.floor(Math.random() * maxX));
+    const newY = Math.max(pad, Math.floor(Math.random() * maxY));
+    noBtn.style.left = newX + 'px';
+    noBtn.style.top = newY + 'px';
+
+    dodgeCount++;
+    noBtn.textContent = teases[Math.min(dodgeCount, teases.length - 1)];
+
+    // after the 20th dodge, it gives up and fades away — only Yes remains
+    if (dodgeCount >= MAX_DODGES) {
+      noBtn.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+      noBtn.style.opacity = '0';
+      noBtn.style.transform = 'scale(0.3) rotate(20deg)';
+      setTimeout(() => noBtn.classList.add('hidden'), 850);
+    }
+  }
+
+  // run away on hover, touch, and any attempted click
+  noBtn.addEventListener('mouseenter', dodge);
+  noBtn.addEventListener('mousedown', (e) => { e.preventDefault(); dodge(); });
+  noBtn.addEventListener('touchstart', (e) => { e.preventDefault(); dodge(); }, { passive: false });
+  noBtn.addEventListener('click', (e) => { e.preventDefault(); dodge(); });
+
+  function sayYes() {
+    document.getElementById('question').textContent = '';
+    document.getElementById('btnRow').classList.add('hidden');
+    document.querySelector('.card .topper').classList.add('hidden');
+    document.querySelector('.card .sub').classList.add('hidden');
+    if (noBtn.classList.contains('loose')) noBtn.classList.add('hidden');
+    document.getElementById('picker').classList.add('show');
+  }
+
+  // ---- your phone number for the pre-filled text (digits only, with country code) ----
+  const YOUR_PHONE = ''; // e.g. '15551234567' — leave blank and she'll just pick you as recipient
+
+  let messageText = '';
+
+  function finish() {
+    const date = document.getElementById('datePick').value;
+    const rest = document.getElementById('restPick').value;
+    if (!date || !rest) {
+      alert('Pick a date and a restaurant first 💕');
+      return;
+    }
+    if (date < '2026-06-16' || date > '2026-06-18') {
+      alert('That day is taken, my love — pick June 16, 17, or 18 😅');
+      return;
+    }
+    const pretty = new Date(date + 'T00:00:00').toLocaleDateString(undefined,
+      { weekday: 'long', month: 'long', day: 'numeric' });
+    document.getElementById('picker').classList.remove('show');
+    document.getElementById('recap').innerHTML = '📅 ' + pretty + '<br>🍽️ ' + rest;
+    messageText = "Yes, I'll go on a date with you! 💕 I picked " + pretty + " at " + rest + ". 🥰";
+    document.getElementById('done').classList.add('show');
+  }
+
+  function sendText() {
+    const sep = /iPhone|iPad|Mac/i.test(navigator.userAgent) ? '&' : '?';
+    window.location.href = 'sms:' + YOUR_PHONE + sep + 'body=' + encodeURIComponent(messageText);
+  }
+
+  async function copyDetails() {
+    try {
+      await navigator.clipboard.writeText(messageText);
+      document.getElementById('copyBtn').textContent = 'Copied! ✓';
+    } catch (e) {
+      document.getElementById('copyBtn').textContent = messageText;
+    }
+  }
+</script>
+</body>
+</html>
