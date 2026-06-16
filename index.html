@@ -335,35 +335,55 @@
     'So close!', 'Give up? 🙈', 'Just say Yes 😘', 'Last chance…', 'Okay okay 🥺'
   ];
 
+  let lastDodge = 0;
+
+  // The play area: a centered box no bigger than an iPhone screen, so the
+  // No button always stays close to the card and can never fly off-screen.
+  function playBox() {
+    const boxW = Math.min(390, window.innerWidth - 24);
+    const boxH = Math.min(750, window.innerHeight - 24);
+    const left = (window.innerWidth - boxW) / 2;
+    const top = (window.innerHeight - boxH) / 2;
+    return { left, top, w: boxW, h: boxH };
+  }
+
   function dodge() {
     if (dodgeCount >= MAX_DODGES) return; // it has already given up
 
-    // make it free-floating the first time so it can roam
+    // debounce: one real attempt per interaction (a tap fires several events)
+    const now = Date.now();
+    if (now - lastDodge < 120) return;
+    lastDodge = now;
+
+    // make it free-floating the first time so it can roam (within the box)
     if (!noBtn.classList.contains('loose')) {
       const r = noBtn.getBoundingClientRect();
       noBtn.classList.add('loose');
       noBtn.style.left = r.left + 'px';
       noBtn.style.top = r.top + 'px';
     }
-    const pad = 24;
+    const pad = 12;
     const bw = noBtn.offsetWidth;
     const bh = noBtn.offsetHeight;
-    const maxX = window.innerWidth - bw - pad;
-    const maxY = window.innerHeight - bh - pad;
-    const newX = Math.max(pad, Math.floor(Math.random() * maxX));
-    const newY = Math.max(pad, Math.floor(Math.random() * maxY));
+    const box = playBox();
+    const minX = box.left + pad;
+    const minY = box.top + pad;
+    const rangeX = Math.max(0, box.w - bw - pad * 2);
+    const rangeY = Math.max(0, box.h - bh - pad * 2);
+    const newX = minX + Math.floor(Math.random() * rangeX);
+    const newY = minY + Math.floor(Math.random() * rangeY);
     noBtn.style.left = newX + 'px';
     noBtn.style.top = newY + 'px';
 
     dodgeCount++;
     noBtn.textContent = teases[Math.min(dodgeCount, teases.length - 1)];
 
-    // after the 20th dodge, it gives up and fades away — only Yes remains
+    // after the 20th dodge it gives up — stays visible, just defeated
     if (dodgeCount >= MAX_DODGES) {
-      noBtn.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-      noBtn.style.opacity = '0';
-      noBtn.style.transform = 'scale(0.3) rotate(20deg)';
-      setTimeout(() => noBtn.classList.add('hidden'), 850);
+      noBtn.style.transition = 'opacity 0.5s ease';
+      noBtn.style.opacity = '0.45';
+      noBtn.style.cursor = 'default';
+      noBtn.textContent = 'Okay, you win 🥹';
     }
   }
 
